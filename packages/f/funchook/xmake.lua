@@ -10,10 +10,11 @@ package("funchook")
     on_install(function (package)
         local configs = {}
         table.insert(configs, "-DCMAKE_BUILD_TYPE=" .. (package:debug() and "Debug" or "Release"))
-        
+        table.insert(configs, "-DBUILD_SHARED_LIBS=OFF")
         table.insert(configs, "-DFUNCHOOK_BUILD_SHARED=" .. (package:config("shared") and "ON" or "OFF"))
-        table.insert(configs, "-DFUNCHOOK_BUILD_TESTS=OFF")
-        table.insert(configs, "-DFUNCHOOK_INSTALL=OFF")
+        table.insert(configs, "-DFUNCHOOK_DISASM=capstone")
+        table.insert(configs, "-DFUNCHOOK_BUILD_SHARED=OFF")
+        table.insert(configs, "-DFUNCHOOK_BUILD_STATIC=ON")
         
         import("package.tools.cmake").install(package, configs)
         os.mv("include/*", package:installdir("include"))
