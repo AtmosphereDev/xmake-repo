@@ -5,7 +5,8 @@ package("funchook")
 
     add_versions("v1.1.3", "2aca28efeb2a3b00c696e1c3e05b44581e118580")
 
-    add_deps("cmake", "capstone")
+    add_deps("cmake")
+    add_deps("capstone")
 
     on_install(function (package)
         local configs = {}
